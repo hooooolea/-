@@ -1,0 +1,54 @@
+MODEL:
+! 收益最大化模型
+[OBJECTIVE_1] MAX = 12041*x1 + 11021*x2 + 3353*x3;
+[CONSTRAINTS_1]
+ x1 + x2 + x3 <= 2000;
+ @ABS(x1 - 4.44*x2) <= 1e-5; ! 鸵鸟饲料配比
+ @ABS(x1 - 2.22*x3) <= 1e-5;
+ x1 > 0; x2 > 0; x3 > 0;
+
+! 土地资源最大化模型（改进版）
+[OBJECTIVE_2] MAX = 18000*x1 + 20000*x2 + 10000*x3;
+[CONSTRAINTS_2]:
+! 基本约束
+ x1 = 7.2*x2;  ! 精确比例关系
+ x1 = 3.7*x3;
+ 21164*x1 + 4572*1.63*x2 + 9423*x3 >= 3000*142 + 1e-6; ! 添加微小松弛量
+ 6690*x1 + 2172*x2 + 5090*x3 >= 0;
+ x1 + x2 + x3 <= 45;
+ 18000*x1 + 20000*x2 + 10000*x3 >= 0.8*13500000; ! 降低收益目标至80%
+! 变量非负约束
+ x1 > 1e-6; x2 > 1e-6; x3 > 1e-6;
+
+! 种植成本最小化模型
+[OBJECTIVE_3] MIN = 56*x1 + 60*x2 + 48*x3;
+[CONSTRAINTS_3]
+ x1 + x2 + x3 <= 2000;
+ 951.58*x1 + 870.94*x2 + 265.02*x3 >= 1066770;
+ @ABS(x1 - 4.44*x2) <= 1e-5;
+ @ABS(x1 - 2.22*x3) <= 1e-5;
+ x1 > 0; x2 > 0; x3 > 0;
+
+! 添加求解稳定性设置
+@SET('TERSEO', 2);  ! 提高求解精度
+@SET('BRANCH', 1);  ! 启用分支定界法
+@SET('DUAL', 1);    ! 启用对偶计算
+
+CALC:
+! 自动检测约束冲突
+! 增强约束冲突检测
+@FOR([CONSTRAINTS_1][CONSTRAINTS_2][CONSTRAINTS_3]:
+  @IF(@DUAL(CURRENT) > 1e6,
+    @WRITE('约束冲突警告：', @INDEX(CURRENT), '号约束对偶值=', @FORMAT(@DUAL(CURRENT),'0.2e'), '\n')
+    @WRITE('建议检查：', @STRING(CURRENT), '\n\n')));
+
+! 添加求解进度跟踪
+@SET('ECHO', 1);  ! 显示求解过程
+@SET('STAWIN', 1); ! 显示状态窗口
+
+! 分模型求解
+@SOLVE(OBJECTIVE_1);
+@SOLVE(OBJECTIVE_2);
+@SOLVE(OBJECTIVE_3);
+ENDCALC
+END

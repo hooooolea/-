@@ -1,0 +1,20 @@
+{
+  "name": "farm-planning",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "npx @dcloudio/vue-cli-service serve",
+    "build": "uni build",
+    "dev:mp-weixin": "npx uni -p mp-weixin",
+    "build:mp-weixin": "cross-env NODE_ENV=production npx uni build -p mp-weixin"
+  },
+  "dependencies": {
+    "javascript-lp-solver": "^0.4.24"
+  },
+  "devDependencies": {
+    "@dcloudio/uni-mp-vue": "^3.0.0-alpha",
+    "@dcloudio/vue-cli-plugin-uni": "^3.0.0-alpha",
+    "cross-env": "^7.0.3",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack-bundle-analyzer": "^4.10.2"
+  }
+}

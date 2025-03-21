@@ -1,0 +1,78 @@
+{
+    "pages": [
+        {
+            "path": "pages/login/login",
+            "style": {
+                "navigationBarTitleText": "登录"
+            }
+        },
+        {
+            "path": "pages/index/index",
+            "style": {
+                "navigationBarTitleText": "首页"
+            }
+        },
+        {
+            "path": "pages/planning/index",
+            "style": {
+                "navigationBarTitleText": "精准规划"
+            }
+        },
+        {
+            "path": "pages/location-select/index",
+            "style": {
+                "navigationBarTitleText": "选择地区"
+            }
+        },
+        {
+            "path": "pages/service-select/index",
+            "style": {
+                "navigationBarTitleText": "选择服务类型"
+            }
+        }
+    ],
+    "subPackages": [
+        {
+            "root": "pages/features",
+            "pages": [
+                {
+                    "path": "introduction/index",
+                    "style": {
+                        "navigationBarTitleText": "功能介绍",
+                        "enablePullDownRefresh": false
+                    }
+                }
+            ]
+        },
+
+        {
+            "root": "pages/feedback",
+            "pages": [
+                {
+                    "path": "index",
+                    "style": {
+                        "navigationBarTitleText": "意见反馈"
+                    }
+                },
+                {
+                    "path": "list",
+                    "style": {
+                        "navigationBarTitleText": "反馈列表"
+                    }
+                }
+            ]
+        }
+    ],
+    "globalStyle": {
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "智慧农业助手",
+        "navigationBarBackgroundColor": "#F8F8F8",
+        "backgroundColor": "#F8F8F8"
+    },
+    "easycom": {
+        "autoscan": true,
+        "custom": {
+            "^uni-(.*)": "@/components/uni-$1/uni-$1.vue"
+        }
+    }
+}

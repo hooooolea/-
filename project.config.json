@@ -1,0 +1,26 @@
+{
+  "appid": "wx0e7a12a346bca13b",
+  "projectname": "小程序项目",
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "postcss": true,
+    "minified": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
+  },
+  "libVersion": "3.0.2",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "compileType": "miniprogram",
+  "condition": {},
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
+}
