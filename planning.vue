@@ -302,9 +302,23 @@ export default {
 					url: '/pages/login/login'
 				});
 			}, 1500);
+		},
+		
+		// 处理图表触摸开始事件
+		handleChartTouch(e) {
+			this.touchStartX = e.touches[0].x;
+			this.touchStartY = e.touches[0].y;
+		},
+		
+		// 处理图表移动事件
+		handleChartMove(e) {
+			// 实现拖动查看详细区域功能
+		},
+		
+		// 处理图表触摸结束事件
+		handleChartEnd() {
+			// 实现点击区块显示详细信息
 		}
-
-
 	}
 }
 </script>
@@ -564,17 +578,3 @@ export default {
 	}
 }
 </style>
-
-// 新增的触摸事件处理
-function handleChartTouch(e) {
-  this.touchStartX = e.touches[0].x
-  this.touchStartY = e.touches[0].y
-}
-
-function handleChartMove(e) {
-  // 实现拖动查看详细区域功能
-}
-
-function handleChartEnd() {
-  // 实现点击区块显示详细信息
-}
